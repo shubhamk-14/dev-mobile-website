@@ -1218,6 +1218,8 @@ input {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    --header-height: 76px;
+    padding-right: 72px;
   }
 
   .logo {
@@ -1225,39 +1227,55 @@ input {
   }
 
   .menu-toggle {
-    order: 2;
-    align-self: flex-start;
+    order: 0;
+    align-self: flex-end;
+    position: absolute;
+    right: 0;
+    top: 12px;
   }
 
   .nav {
-    width: min(78vw, 300px);
+    width: min(86vw, 360px);
     position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    padding: 90px 18px 24px;
+    top: calc(var(--header-height) + 8px);
+    left: 50%;
+    right: auto;
+    height: auto;
+    max-height: calc(100vh - var(--header-height) - 24px);
+    padding: 20px 18px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     background: rgba(255, 255, 255, 0.98);
-    border-left: 1px solid rgba(10, 18, 32, 0.08);
-    border-radius: 24px 0 0 24px;
-    box-shadow: -16px 0 30px rgba(10, 18, 32, 0.12);
-    transform: translateX(110%);
-    transition: transform 0.3s ease;
+    border: 1px solid rgba(10, 18, 32, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(10, 18, 32, 0.18);
+    transform: translate(-50%, -8px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
     z-index: 20;
+    overflow-y: auto;
   }
   .nav.open {
-    transform: translateX(0);
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav a {
     width: 100%;
+    text-align: center;
   }
 
   .menu-toggle {
     display: inline-flex;
+  }
+
+  .nav-backdrop {
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
   }
 
   .hero {
